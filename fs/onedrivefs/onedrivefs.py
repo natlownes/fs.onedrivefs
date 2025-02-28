@@ -351,7 +351,6 @@ class OneDriveFS(FS):
         'is_dir': 'folder' in item,
       },
       'details': {
-        'id': item['id'],
         'accessed': None, # not supported by OneDrive
         'created': datetime_to_epoch(_ParseDateTime(item['createdDateTime'])),
         'metadata_changed': None, # not supported by OneDrive
@@ -362,6 +361,9 @@ class OneDriveFS(FS):
       'file_system_info': {
         'client_created': datetime_to_epoch(_ParseDateTime(item['fileSystemInfo']['createdDateTime'])),
         'client_modified': datetime_to_epoch(_ParseDateTime(item['fileSystemInfo']['lastModifiedDateTime']))
+      },
+      'msgraph': {
+        'id': item['id'],
       }
     }
     if 'photo' in item:
